@@ -3,7 +3,6 @@ use std::fmt;
 use std::str::FromStr;
 use std::convert::AsRef;
 
-use error::Error;
 use self::Method::{Options, Get, Post, Put, Delete, Head, Trace, Connect, Patch,
                    Extension};
 
@@ -88,10 +87,10 @@ impl Method {
 }
 
 impl FromStr for Method {
-    type Err = Error;
-    fn from_str(s: &str) -> Result<Method, Error> {
+    type Err = ();
+    fn from_str(s: &str) -> Result<Method, Self::Err> {
         if s == "" {
-            Err(Error::Method)
+            Err(())
         } else {
             Ok(match s {
                 "OPTIONS" => Options,
@@ -136,7 +135,6 @@ impl Default for Method {
 mod tests {
     use std::collections::HashMap;
     use std::str::FromStr;
-    use error::Error;
     use super::Method;
     use super::Method::{Get, Post, Put, Extension};
 
@@ -159,7 +157,7 @@ mod tests {
         assert_eq!(Extension("MOVE".to_owned()),
                    FromStr::from_str("MOVE").unwrap());
         let x: Result<Method, _> = FromStr::from_str("");
-        if let Err(Error::Method) = x {
+        if let Err(()) = x {
         } else {
             panic!("An empty method is invalid!")
         }
