@@ -1,4 +1,16 @@
-//! The HTTP request method
+//! This crate provides an HTTP request method parser/formatter, split out from
+//! [hyper.rs](https://hyper.rs).
+//!
+//! ## Example
+//!
+//! ```rust
+//! use uhttp_method::Method;
+//!
+//! assert_eq!("GET".parse(), Ok(Method::Get));
+//! assert!(Method::Get.idempotent());
+//! assert_eq!(format!("{}", Method::Patch), "PATCH");
+//! ```
+
 use std::fmt;
 use std::str::FromStr;
 use std::convert::AsRef;

@@ -1,6 +1,9 @@
 [package]
-name = "http_method"
+name = "uhttp_method"
 version = "0.10.0"
 description = "HTTP methods split out from hyper.rs"
 authors = ["Sean McArthur <sean.monstar@gmail.com>", "Mick Koch <mick@kochm.co>"]
 license = "MIT"
+documentation = "https://docs.rs/uhttp_method"
+repository = "https://github.com/kchmck/uhttp_method.rs"
+keywords = ["http", "method"]
